@@ -1,0 +1,83 @@
+---
+const {name, count} = Astro.props;
+---
+
+<div class="fap-sidebar-amount-counter">
+    <label for="Quantity" class="text-h3 font-bold">{name}</label>
+
+    <div class="fap-sidebar-amount-input-number">
+        <input type="number" id="Quantity" value={`${count}`}>
+        <div class="fap-sidebar-amount-button-groups">
+        <button type="button">
+            <img src="https://static.wow2print.com/storage/245/content/image/185826030166f2a4968f43a3.10195205.svg" alt="" />                  
+        </button>
+        <button type="button">
+            <img src="https://static.wow2print.com/storage/245/content/image/178123255066f2a495a88b23.07904532.svg" alt="" />                   
+        </button>
+        </div>
+    </div>
+</div>
+
+  <style lang="scss" is:global>
+    .fap-sidebar-amount-counter {
+		display: flex;
+		flex-direction: column;
+		gap: .5rem;
+
+		& input {
+			appearance: none;
+			border: none;
+            outline: none;
+		}
+
+		& button {
+			appearance: none;
+			border: none;
+			display: flex;
+			align-items: center;
+			width: 28px;
+			height: 28px;
+			border-radius: 3px;
+			background-color: var(--color-white);
+            cursor: pointer;
+            transition: var(--animate-default);
+            border: 2px solid var(--color-light-gray);
+            &:hover {
+                border: 2px solid var(--color-primary);
+            }
+		}
+	}
+	.fap-sidebar-amount-button-groups {
+		display: flex;
+		align-items: stretch;
+		gap: .5em;
+		justify-content: center;
+		background-color: var(--color-light-gray);
+		padding: 5px 0;
+	}
+	.fap-sidebar-amount-input-number {
+		border-width: 1px;
+		border-radius: 5px;
+		gap: 0.5rem;
+		align-items: center;
+		flex-wrap: nowrap;
+		display: flex;
+		border: 2px solid var(--color-light-gray);
+
+		& > :is(input, div) {
+			flex: 1;
+		}
+
+		& input {
+			text-align: center;
+			&::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+
+			&[type="number"] {
+				-moz-appearance: textfield;
+			}
+		}
+	}
+  </style>

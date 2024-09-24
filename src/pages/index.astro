@@ -1,16 +1,106 @@
 ---
+import Counter from "../components/Counter.astro";
+import Parameter from "../components/Parameter.astro";
+import Layout from "../layout.astro";
+
 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+	<div class="fap-sidebar-amount shadow-default p-6 rounded-15 flex flex-col gap-4">
+
+        <h2 class="text-h2 font-bold">Параметры заказа</h2>
+
+		<ul class="fap-sidebar-amount-parameters">
+			<Parameter name="Формат печати" value="500x700" />
+			<Parameter name="Красочность печати" value="4+4" />
+			<Parameter name="Очередность печати" value="в подбор" />
+        </ul>
+
+		<Counter name="Количество полос" count="1" />
+		<Counter name="Тираж" count="100" />
+
+		<hr>
+
+		<div class="fap-sidebar-amount-bottom">
+          <div class="fap-sidebar-amount-date">
+            <h3>Готовность</h3>
+            <span>17.04.24</span>
+          </div>
+          <div class="fap-sidebar-amount-cost">
+            <h3>Итог:</h3>
+            <span>3090 ₽</span>
+            <span>в том числе НДС</span>
+          </div>
+          <a href="#" class="fap-sidebar-amount-send">Оформить заказ</a>
+        </div>
+      </div>
+</Layout>
+
+
+<style lang="scss" is:global>
+	.fap-sidebar-amount {
+		font-family: "Helvetica";
+		width: 345px;
+		border-radius: 25px;
+		display: flex;
+		flex-direction: column;
+		padding: 1.5rem;
+		box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
+		gap: 1rem;
+
+		& :is(h2, h3) {
+			margin: 0;
+		}
+
+		& hr {
+			margin: 1.5rem 0;
+			border-top: 1px solid var(--color-light-gray);
+		}
+	}
+	.fap-sidebar-amount-bottom {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.fap-sidebar-amount-parameters {
+		display: flex;
+		flex-direction: column;
+		gap: .5em;
+		padding: 0;
+	}
+	.fap-sidebar-amount-send {
+		font-weight: 700;
+		text-align: center;
+		padding: 1rem;
+		background-color: var(--color-black);
+		color: var(--color-white);
+		border-radius: 15px;
+		display: block;
+		text-decoration: none;
+		transition: var(--animate-default);
+		&:hover {
+			opacity: .5;
+		}
+	}
+	:is(.fap-sidebar-amount-date, .fap-sidebar-amount-cost) {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 5px 0;
+	}
+
+	.fap-sidebar-amount-cost {
+		font-size: 1.25rem;
+		font-weight: 700;
+		& span:nth-of-type(2) {
+			font-size: 12px;
+			color: rgba(0,0,0,.6);
+			width: 100%;
+			font-weight: 400;
+
+		}
+	}
+
+</style>
